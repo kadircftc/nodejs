@@ -1,0 +1,54 @@
+wsl ubuntu için pem dosyasını chmod a 
+chmod 600 kadiraws.pem
+chmod 600 pem komutu, belirtilen kadiraws.pem dosyasının dosya izinlerini değiştirir ve bu dosyanın yalnızca sahibi
+ tarafından okunabilir olmasını sağlar. Bu, güvenlik açısından önemlidir, özellikle bir AWS EC2 anahtar dosyası gibi hassas bir dosya için.
+
+cp /mnt/c/Users/kadir/Desktop/nodejs/docker-compose.yaml ~/nodejs ubuntu klasörüne aktarma
+ssh -i kadiraws.pem ec2-user@<AWS_PUBLIC_IP> sunucya bağlanmayı sağlar.
+
+
+kadir@DESKTOP-K34TCBL:~/nodejs$ scp -i kadiraws.pem -r data public routes services uploads views ec2-user@<ipAdress>:/home/ec2-user/downloads/nodejs
+
+
+
+
+sudo yum update -y
+sudo yum install docker -y
+sudo systemctl start docker
+sudo systemctl enable docker
+sude usermod -a -G docker ec2-user
+
+sudo docker build -t nodeapi:1.2 -f Dockerfile .
+docker compose yükle
+sudo curl -L "https://github.com/docker/compose/releases/latest/download/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+docker-compose --version
+sudo docker-compose up -d
+
+
+mysql bağlanma docker exec -it mysql-container mysql -u root -p
+SHOW DATABASES;
+USE nodefb;
+USE nodefb;
+SHOW TABLES;
+SELECT * FROM <tablo_adi>;
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    image_url VARCHAR(100),
+    price DECIMAL(10,2),
+    isHome TINYINT(1),
+    isActive TINYINT(1)
+);
+INSERT INTO products (name, image_url, price, isHome, isActive) 
+VALUES 
+('Product 1', 'phone.jpg', 30000.99, 1, 1),
+('Product 2', 'phone.jpg', 58000.99, 0, 1),
+('Product 3', 'phone.jpg', 95000.99, 1, 0);
+
+node dan mysql e ping göndermek için 
+docker exec -it nodeapi-container bash
+apt update && apt install -y iputils-ping
+sonra bu paketleri indir ardından 
+ping mysql-container
+çalıştır ve bağlanmış mı kontrol et
